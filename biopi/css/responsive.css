@@ -8,8 +8,9 @@
 }
 
 @media (max-width: 1024px) {
-  :root { --shell: 100%; }
-  .shell, .shell--narrow { width: min(100% - 40px, 1240px); }
+  /* Tablet & mobile: one consistent 20px gutter on both sides, never smaller. */
+  :root { --shell: 100%; --gutter: 20px; }
+  .shell, .shell--narrow { width: min(100% - (var(--gutter) * 2), 1240px); }
   .hero__grid { grid-template-columns: 1fr; gap: 40px; }
   .hero__visual { order: -1; }
   .visual-frame { aspect-ratio: 16 / 10; }
@@ -45,9 +46,8 @@
 }
 
 @media (max-width: 640px) {
-  .shell, .shell--narrow { width: min(100% - 32px, 1240px); }
-  .navbar { width: min(100% - 20px, 1320px); padding: 9px 10px 9px 14px; }
-  .mobile-menu { width: min(100% - 20px, 1320px); }
+  .navbar { width: min(100% - 24px, 1320px); padding: 9px 10px 9px 14px; }
+  .mobile-menu { width: min(100% - 24px, 1320px); }
   .hero__grid { padding-block: 40px 52px; }
   .visual-frame { aspect-ratio: 4 / 3; }
   .btn-row { gap: 10px; }
@@ -60,9 +60,14 @@
 }
 
 @media (max-width: 400px) {
-  .shell, .shell--narrow { width: min(100% - 24px, 1240px); }
-  .brand__sub { letter-spacing: .16em; font-size: .55rem; }
+  /* Navbar: brand + actions must fit inside the card (no spill past its edge). */
+  .navbar { gap: 12px; padding: 8px 8px 8px 12px; }
+  .brand { gap: 9px; flex: 1 1 auto; min-width: 0; }
+  .brand__text { min-width: 0; }
+  .brand__name, .brand__sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand__sub { letter-spacing: .14em; font-size: .53rem; }
   .brand__mark { width: 30px; height: 30px; }
+  .nav-actions { gap: 8px; }
   .lang-switch__thumb { width: 34px; }
   .lang-switch[data-active="fr"] .lang-switch__thumb { transform: translateX(34px); }
   .lang-switch button { width: 34px; }

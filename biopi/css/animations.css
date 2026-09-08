@@ -9,10 +9,12 @@
   transition: opacity .75s cubic-bezier(.22,.61,.36,1), transform .75s cubic-bezier(.22,.61,.36,1);
   will-change: opacity, transform;
 }
-[data-reveal].is-visible { opacity: 1; transform: none; }
 [data-reveal][data-reveal="fade"] { transform: none; }
 [data-reveal][data-reveal="left"] { transform: translateX(-16px); }
 [data-reveal][data-reveal="scale"] { transform: scale(.985); }
+/* Must come AFTER the variants: same specificity, so source order decides.
+   Previously the "left" variant won and stayed shifted -16px forever. */
+[data-reveal].is-visible { opacity: 1; transform: none; }
 
 [data-reveal-delay="1"] { transition-delay: .08s; }
 [data-reveal-delay="2"] { transition-delay: .16s; }
