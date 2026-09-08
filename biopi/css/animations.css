@@ -1,0 +1,66 @@
+/* ==========================================================================
+   BIOPI Therapeutics — Motion layer (restrained, scientific)
+   ========================================================================== */
+
+/* Scroll reveal — JS adds .is-visible via IntersectionObserver */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .75s cubic-bezier(.22,.61,.36,1), transform .75s cubic-bezier(.22,.61,.36,1);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal][data-reveal="fade"] { transform: none; }
+[data-reveal][data-reveal="left"] { transform: translateX(-16px); }
+[data-reveal][data-reveal="scale"] { transform: scale(.985); }
+
+[data-reveal-delay="1"] { transition-delay: .08s; }
+[data-reveal-delay="2"] { transition-delay: .16s; }
+[data-reveal-delay="3"] { transition-delay: .24s; }
+[data-reveal-delay="4"] { transition-delay: .32s; }
+[data-reveal-delay="5"] { transition-delay: .40s; }
+[data-reveal-delay="6"] { transition-delay: .48s; }
+[data-reveal-delay="7"] { transition-delay: .56s; }
+[data-reveal-delay="8"] { transition-delay: .64s; }
+[data-reveal-delay="9"] { transition-delay: .72s; }
+[data-reveal-delay="10"] { transition-delay: .80s; }
+
+/* Hero video entrance */
+.visual-frame { opacity: 0; transform: scale(.99); transition: opacity 1s ease, transform 1.2s cubic-bezier(.22,.61,.36,1); }
+.visual-frame.is-visible { opacity: 1; transform: none; }
+
+/* Page entrance */
+body { animation: biopi-page-in .5s ease both; }
+@keyframes biopi-page-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* Card / interactive hover */
+.grid > *, .person { transition: background-color .3s ease; }
+.grid > *:hover, .person:hover { background: var(--white); }
+.section--white .grid > *:hover, .section--white .person:hover { background: var(--paper-2); }
+
+.tl-item[data-state="current"]::before { animation: biopi-pulse 3.2s ease-in-out infinite; }
+@keyframes biopi-pulse {
+  0%, 100% { box-shadow: 0 0 0 5px rgba(15,158,142,.16); }
+  50%      { box-shadow: 0 0 0 9px rgba(15,158,142,.06); }
+}
+
+/* Language switch text crossfade */
+.lang-fading [data-i18n], .lang-fading [data-i18n-html] { opacity: .35; transition: opacity .12s ease; }
+[data-i18n], [data-i18n-html] { transition: opacity .22s ease; }
+
+/* Number counters */
+.stat__k { font-variant-numeric: tabular-nums; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .visual-frame { opacity: 1 !important; transform: none !important; }
+  body { animation: none; }
+}
