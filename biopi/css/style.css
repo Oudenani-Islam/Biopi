@@ -45,6 +45,7 @@
   --radius-pill: 999px;
 
   --shell: 1240px;
+  --gutter: 24px;   /* horizontal space between viewport edge and content */
   --measure: 68ch;
 
   --shadow-nav: 0 1px 2px rgba(15, 30, 51, .04), 0 10px 30px rgba(15, 30, 51, .07);
@@ -108,8 +109,8 @@ p  { margin: 0; }
 }
 
 /* ---------- Layout primitives ---------- */
-.shell { width: min(100% - 48px, var(--shell)); margin-inline: auto; }
-.shell--narrow { width: min(100% - 48px, 860px); margin-inline: auto; }
+.shell { width: min(100% - (var(--gutter) * 2), var(--shell)); margin-inline: auto; }
+.shell--narrow { width: min(100% - (var(--gutter) * 2), 860px); margin-inline: auto; }
 
 .section { padding-block: clamp(64px, 8vw, 132px); position: relative; }
 .section--tight { padding-block: clamp(48px, 5.5vw, 84px); }
